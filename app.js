@@ -4,6 +4,8 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 
 const dbConfig = require('./database/db');
+const api = require('./routes/auth.routes');
+
 
 mongoose.Promise = global.Promise;
 mongoose.connect(dbConfig.db, {
@@ -26,7 +28,7 @@ app.use(cors());
 
 app.use('/public', express.static('public'));
 
-// app.use('/api', api);
+app.use('/api', api);
 
 const port = process.env.PORT || 4000;
 const server = app.listen(port, () => {
